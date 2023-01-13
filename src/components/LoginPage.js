@@ -1,12 +1,12 @@
 import {useState, useContext} from 'react';
 import auth from '@react-native-firebase/auth';
-import {Button, Title} from 'react-native-paper';
+import {Button, Title, useTheme} from 'react-native-paper';
 import {StyleSheet, Text, View} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {NotificationsContext} from '../contexts/notifications';
-
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+
 const LoginPage = () => {
   const [isSignupVisible, setIsSignupVisible] = useState(false);
   const [loaderVisible, setLoaderVisible] = useState(false);
@@ -14,6 +14,8 @@ const LoginPage = () => {
 
   const switchToLogin = () => setIsSignupVisible(false);
   const switchToSignup = () => setIsSignupVisible(true);
+
+  const theme = useTheme();
 
   const loginUser = async ({email, password}) => {
     if (!email || !password) {
@@ -70,7 +72,7 @@ const LoginPage = () => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
       {!isSignupVisible ? (
         <LoginForm
           switchForm={switchToSignup}

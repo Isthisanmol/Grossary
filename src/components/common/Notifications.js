@@ -1,9 +1,11 @@
 import {NotificationsContext} from '../../contexts/notifications';
 import {useContext, useEffect} from 'react';
 import {View, Text} from 'react-native';
-import {Snackbar} from 'react-native-paper';
+import {Snackbar, useTheme} from 'react-native-paper';
 
 const Message = props => {
+  const theme = useTheme();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       props.dispatch({
@@ -29,6 +31,7 @@ const Message = props => {
   return (
     <Snackbar
       style={{
+        backgroundColor: theme.colors.background,
         borderWidth: 2,
         borderColor:
           props.severity === 'success'
